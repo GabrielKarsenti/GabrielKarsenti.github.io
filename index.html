@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Your Name</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Describe yourself and your experience here.</p>
+    </section>
+
+    <section id="portfolio">
+        <h2>My Portfolio</h2>
+        <!-- Portfolio Item 1 -->
+        <div class="portfolio-item">
+            <img src="path_to_image" alt="Project Image">
+            <h3>Project Title</h3>
+            <p>Project Description</p>
+            <a href="project_link">View Project</a>
+        </div>
+        <!-- Add more portfolio items here -->
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form action="submit_form_link" method="post">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Your Name</p>
+    </footer>
+</body>
+</html>
