@@ -1,0 +1,178 @@
+body {
+    transform: scale(0.95);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('MathBackground.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0px -150px;
+    font-size: 18px;
+}
+
+header {
+    background-color: lightblue;
+    color: black;
+    text-align: center;
+    font-family: sans-serif;
+    padding: 10px 0;
+    position: relative;
+    font-size: 15px;
+}
+
+.logo {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 94.4px;
+}
+
+nav {
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.nav-container {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 0;
+}
+
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.nav-item {
+    margin: 0 10px;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.nav-item a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #000000;
+    font-size: 20px;
+}
+
+.nav-item a:hover {
+    background-color: #808080;
+    color: white;
+}
+
+section {
+    margin: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    font-size: 18px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 600px) {
+    header, nav, section, footer {
+        text-align: center;
+        border-color: #000;
+        border-radius: 2px;
+    }
+
+    .logo {
+        position: static;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .nav-list {
+        flex-direction: column;
+    }
+
+    .nav-item {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}
+
+.team-member {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profileImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #000;
+}
+
+.team-description {
+    flex-grow: 1;
+}
+
+.dropbtn {
+    background-color: #000000;
+    margin-right: 50px;
+    color: white;
+    padding: 8px;
+    font-size: 16px;
+    border-color: blue;
+    border-width: 5px;
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 25%;
+    transform: translateX(-15%);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: rgba(128, 128, 128, 0.5);
+}
