@@ -3,30 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Tutoring</title>
-    <link rel="stylesheet" type="text/css" href="Tutor.css">
+    <title>Your Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <!-- <img src="TuutorLogo.png" alt="Math Tutoring Logo" class="logo"> -->
-        <h1>Welcome to Tutoring</h1>
+        <h1>Your Name</h1>
+        <nav>
+            <ul>
+                <li><a href="Tutor.html">Tutor Page</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <nav class="nav-container">
-        <ul class="nav-list">
-            <li class="nav-item"><a href="index.html">Home</a></li>
-            <li class="nav-item"><a href="about.html">About Us</a></li>
-            <li class="nav-item"><a href="subjects.html">Subjects / Sign up</a></li>
-        </ul>
-    </nav>
-
-
-    <section>
-        <h2>About Our Services</h2>
-        <p> DESCIPTIONSSDSDSASDAS  </p>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Describe yourself and your experience here.</p>
     </section>
 
+    <section id="portfolio">
+        <h2>My Portfolio</h2>
+        <!-- Portfolio Item 1 -->
+        <div class="portfolio-item">
+            <img src="path_to_image" alt="Project Image">
+            <h3>Project Title</h3>
+            <p>Project Description</p>
+            <a href="project_link">View Project</a>
+        </div>
+        <!-- Add more portfolio items here -->
+    </section>
 
-    <script src="Tutor.js"></script>
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form action="submit_form_link" method="post">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Your Name</p>
+    </footer>
 </body>
 </html>
