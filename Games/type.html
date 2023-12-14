@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Typing Tester</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding-top: 50px;
+            background-color: lightslategrey;
+        }
+        #testText {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+        #definitions {
+            width: 800px;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: sans-serif;
+            font-size: 20px;
+            padding: 10px;
+        }
+        textarea {
+            width: 50%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border-radius: 15px;
+            border: 5px solid indianred;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-right: 10px;
+            border: 3px solid blanchedalmond;
+            border-radius: 15px;
+            cursor: pointer;
+            background-color: lightblue;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: black;
+        }
+        button:hover {
+            background-color: blue;
+        }
+        #result {
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        let startTime;
+        let endTime;
+        const peepee = [
+            "apple", "dream", "world", "ocean", "heart",
+            "peace", "light", "green", "music", "dance",
+            "child", "smile", "sweet", "house", "river",
+            "plant", "happy", "magic", "beach", "sunny",
+            "fruit", "bread", "water", "sugar", "lemon",
+            "train", "puppy", "kitty", "horse", "eagle",
+            "tiger", "panda", "zebra", "shark", "coral",
+            "field", "wheat", "maize", "berry", "olive",
+            "grape", "mango", "peach", "kiwi", "clock",
+            "chair", "table", "shelf", "lamp", "book",
+            "stone", "cloud", "storm", "rain", "snow",
+            "wind", "leaf", "tree", "wood", "fire",
+            "hill", "mount", "sand", "rock",
+            "star", "moon", "sun", "sky", "blue",
+            "lake", "pond", "fish", "bird", "wing",
+            "tail", "foot", "hand", "head", "eye",
+            "ear", "nose", "mouth", "tooth", "hair",
+            "knee", "elbow", "neck", "back", "arm",
+            "leg", "skin", "bone", "blood", "heart",
+            "lung", "liver", "brain", "nerve", "vein",
+            "milk", "meat", "rice", "bean", "corn",
+            "soup", "cake", "pie", "tea", "juice",
+            "beer", "wine", "cheese", "egg", "yogurt",
+            "car", "bike", "boat", "ship", "plane",
+            "train", "truck", "road", "path", "bridge",
+            "door", "window", "wall", "floor", "roof",
+            "room", "kitchen", "bed", "chair", "table",
+            "spoon", "fork", "knife", "plate", "bowl",
+            "cup", "glass", "soap", "towel", "brush",
+            "phone", "radio", "television", "lamp", "fan",
+            "dress", "shirt", "pants", "shoe", "sock",
+            "hat", "coat", "scarf", "glove", "belt",
+            "ring", "watch", "chain", "bag", "purse"
+        ];
+
+        const PoopyBu = {
+            apple: "A fruit of the apple tree, typically round, red or green, and sweet.",
+            dream: "A series of thoughts, images, and sensations occurring in a person's mind during sleep.",
+            world: "The earth, together with all of its countries, peoples, and natural features.",
+            ocean: "A very large expanse of sea, in particular, each of the main areas into which the sea is divided geographically.",
+            heart: "A hollow muscular organ that pumps the blood through the circulatory system by rhythmic contraction and dilation.",
+            peace: "A state or period in which there is no war or a war has ended.",
+            light: "The natural agent that stimulates sight and makes things visible.",
+            green: "A color between blue and yellow in the spectrum; colored like grass or emeralds.",
+            music: "Vocal or instrumental sounds (or both) combined in such a way as to produce beauty of form, harmony, and expression of emotion.",
+            dance: "Move rhythmically to music, typically following a set sequence of steps.",
+            child: "A young human being below the age of puberty or below the legal age of majority.",
+            smile: "Form one's features into a pleased, kind, or amused expression, typically with the corners of the mouth turned up and the front teeth exposed.",
+            sweet: "Having the pleasant taste characteristic of sugar or honey; not salty, sour, or bitter.",
+            house: "A building for  human habitation, especially one that is lived in by a family or a small group of people.",
+            river: "A large natural stream of water flowing in a channel to the sea, a lake, or another such stream.",
+            plant: "A living organism of the kind exemplified by trees, shrubs, herbs, grasses, ferns, and mosses, typically growing in a permanent site, absorbing water and inorganic substances through its roots, and synthesizing nutrients in its leaves by photosynthesis using the green pigment chlorophyll.",
+            happy: "Feeling or showing pleasure or contentment.",
+            magic: "The power of apparently influencing events by using mysterious or supernatural forces.",
+            beach: "A pebbly or sandy shore, especially by the sea between high- and low-water marks.",
+            sunny: "Bright with sunlight; full of sunshine.",
+            fruit: "The sweet and fleshy product of a tree or other plant that contains seed and can be eaten as food.",
+            bread: "Food made of flour, water, and yeast or another leavening agent, mixed together and baked.",
+            water: "A colorless, transparent, odorless, and tasteless liquid that forms the seas, lakes, rivers, and rain and is the basis of the fluids of living organisms.",
+            sugar: "A sweet crystalline substance obtained from various plants, especially sugar cane and sugar beet, consisting essentially of sucrose.",
+            lemon: "A yellow citrus fruit with an acidic flavor.",
+            train: "A series of connected railroad cars pulled or pushed by one or more locomotives.",
+            puppy: "A young dog.",
+            kitty: "A colloquial term for a cat, typically used to refer to a young cat or a cat in an affectionate manner.",
+            horse: "A large, solid-hoofed herbivorous mammal (Equus ferus caballus), domesticated since prehistoric times and used for riding and for drawing or carrying loads.",
+            eagle: "A large bird of prey with a massive hooked bill and long broad wings, renowned for its keen sight and powerful soaring flight.",
+            tiger: "A large, carnivorous feline mammal (Panthera tigris) native to Asia, with a tawny coat and dark vertical stripes.",
+            panda: "A large bearlike mammal (Ailuropoda melanoleuca) native to China, characterized by its distinctive black-and-white coloration.",
+            zebra: "A large wild animal with black and white stripes and an erect mane, native to Africa.",
+            shark: "A large fish with a long body, a pointed snout, and a dorsal fin, found in all seas, especially in warm waters.",
+            coral: "A hard stony substance secreted by certain marine coelenterates as an external skeleton, typically forming large reefs in warm seas.",
+            field: "An area of open land, especially one planted with crops or pasture, typically bounded by hedges or fences.",
+            wheat: "A cereal plant that is the most important kind grown in temperate countries, the grain of which is ground to make flour for bread, pasta, pastry, etc.",
+            maize: "A cereal plant that produces large grains set in rows on a cob; corn.",
+            berry: "A small, typically round fruit that is produced from the ovary of a single flower, with seeds embedded in the flesh.",
+            olive: "A small oval fruit with a hard pit and bitter flesh, green when unripe and brownish-black when ripe, used as food and as a source of oil.",
+            grape: "A berry, typically green (classified as white), purple, red, or black, growing in clusters on a grapevine, eaten as fruit, and used in making wine.",
+            mango: "A fleshy, oval, yellowish-red tropical fruit that is eaten ripe or used green for pickles or chutneys.",
+            peach: "A round, sweet fruit with juicy yellow flesh and downy pinkish-yellow skin.",
+            kiwi: "A flightless bird with brownish-green plumage and a long down-curved bill, native to New Zealand.",
+            clock: "A mechanical or electrical device for measuring time, indicating hours, minutes, and sometimes seconds, typically by hands on a round dial or by displayed figures.",
+            chair: "A separate seat for one person, typically with a back and four legs.",
+            table: "A piece of furniture with a flat top and one or more legs, providing a level surface for eating, writing, or working at.",
+            shelf: "A flat, thin board or plank, especially one of a pair, that is fixed horizontally at a specified height to support objects.",
+            lamp: "A device for giving light, either one consisting of an electric bulb together with its holder and shade or cover or one burning gas or a liquid fuel and consisting of a wick or mantle and a glass shade.",
+            book: "A written or printed work consisting of pages glued or sewn together along one side and bound in covers.",
+            stone: "The hard, solid, nonmetallic mineral matter of which rock is made, especially as a building material.",
+            cloud: "A visible mass of water droplets or ice crystals suspended in the atmosphere, typically high above the ground.",
+            storm: "A violent disturbance of the atmosphere with strong winds and usually rain, thunder, lightning, or snow.",
+            rain: "Moisture condensed from the atmosphere that falls visibly in separate drops.",
+            snow: "Atmospheric water vapor frozen into ice crystals and falling in light white flakes or lying on the ground as a white layer.",
+            wind: "The perceptible natural movement of the air, especially in the form of a current of air blowing from a particular direction.",
+            leaf: "A flattened structure of a higher plant, typically green and blade-like, that is attached to a stem directly or via a stalk.",
+            tree: "A woody perennial plant, typically having a single stem or trunk growing to a considerable height and bearing lateral branches at some distance from the ground.",
+            wood: "The hard fibrous material that forms the main substance of the trunk or branches of a tree or shrub.",
+            fire: "Combustion or burning, in which substances combine chemically with oxygen from the air and typically give out bright light, heat, and smoke.",
+            hill: "A naturally raised area of land, not as high or craggy as a mountain.",
+            mount: "A mountain or hill, typically with a relatively flat top.",
+            valley: "A low area of land between hills or mountains, typically with a river or stream flowing through it.",
+            sand: "A naturally occurring granular material composed of finely divided rock and mineral particles.",
+            rock: "The solid mineral material forming part of the surface of the earth and other similar planets, exposed on the surface or underlying the soil or oceans.",
+            star: "A fixed luminous point in the night sky that is a large, remote incandescent body like the sun.",
+            moon: "The natural satellite of the earth, visible (chiefly at night) by reflected light from the sun.",
+            sun: "The star around which the earth orbits.",
+            sky: "The region of the atmosphere and outer space seen from the earth.",
+            blue: "Of a color intermediate between green and violet, as of the sky or sea on a sunny day.",
+            lake: "A large body of water surrounded by land.",
+            pond: "A small body of still water formed naturally or by artificial means.",
+            fish: "A limbless cold-blooded vertebrate animal with gills and fins and living wholly in water.",
+            bird: "A warm-blooded egg-laying vertebrate animal distinguished by the possession of feathers, wings, a beak, and typically by being able to fly.",
+            wing: "A modified forelimb that is covered with large feathers and used for flying.",
+            tail: "A tail is the section at the rear end of an animal's body.",
+            foot: "The lower extremity of the leg below the ankle, on which a person stands or walks.",
+            hand: "The end part of a person's arm beyond the wrist, including the palm, fingers, and thumb.",
+            head: "The upper part of the human body, or the front or upper part of the body of an animal, typically separated from the rest of the body by a neck, and containing the brain, mouth, and sense organs.",
+            eye: "Each of a pair of globular organs in the head through which people and vertebrate animals see, the visible part typically appearing almond-shaped in animals with eyelids.",
+            ear: "The organ of hearing and balance in humans and other vertebrates, especially the external part of this.",
+            nose: "The part projecting above the mouth on the face of a person or animal, containing the nostrils and used for breathing and smelling.",
+            mouth: "The opening and cavity in the lower part of the human face, surrounded by the lips, through which food is taken in and vocal sounds are produced.",
+            tooth: "Each of a set of hard, bony enamel-coated structures in the jaws of most vertebrates, used for biting and chewing.",
+            hair: "Any of the fine threadlike strands growing from the skin of humans, mammals, and some other animals.",
+            knee: "The joint between the thigh and the lower leg in humans.",
+            elbow: "The joint between the forearm and the upper arm.",
+            neck: "The part of a person's or animal's body connecting the head to the rest of the body.",
+            back: "The rear surface of the human body from the shoulders to the hips.",
+            arm: "Each of the two upper limbs of the human body from the shoulder to the hand.",
+            leg: "Each of the limbs on which a person or animal walks and stands.",
+            skin: "The thin layer of tissue forming the natural outer covering of the body of a person or animal.",
+            bone: "Any of the pieces of hard, whitish tissue making up the skeleton in humans and other vertebrates.",
+            blood: "The red liquid that circulates in the arteries and veins of humans and other vertebrate animals, carrying oxygen to and carbon dioxide from the tissues of the body.",
+            lung: "Each of the pair of organs situated within the ribcage, consisting of elastic sacs with branching passages into which air is drawn, so that oxygen can pass into the blood and carbon dioxide be removed.",
+            liver: "A large lobed glandular organ in the abdomen of vertebrates, involved in many metabolic processes.",
+            brain: "An organ of soft nervous tissue contained in the skull of vertebrates, functioning as the coordinating center of sensation and intellectual and nervous activity.",
+            nerve: "A whitish fiber or bundle of fibers that transmits impulses of sensation to the brain or spinal cord, and impulses from these to the muscles and organs.",
+            vein: "Any of the tubes forming part of the blood circulation system of the body, carrying in most cases oxygen-depleted blood toward the heart.",
+            milk: "An opaque white fluid rich in fat and protein, secreted by female mammals for the nourishment of their young.",
+            meat: "The flesh of an animal, typically a mammal or bird, as food (either fresh or preserved).",
+            rice: "A swamp grass that is widely cultivated as a source of food, especially in Asia.",
+            bean: "A plant of the legume family, especially one bearing edible seeds or pods.",
+            corn: "A North American cereal plant that yields large grains, or kernels, set in rows on a cob. Also called maize.",
+            soup: "A liquid dish, typically made by boiling meat, fish, or vegetables, etc., in stock or water.",
+            cake: "An item of soft, sweet food made from a mixture of flour, fat, eggs, sugar, and other ingredients, baked and sometimes iced or decorated.",
+            pie: "A baked dish of fruit, or meat and vegetables, typically with a top and base of pastry.",
+            tea: "A hot drink made by infusing the dried crushed leaves of the tea plant in boiling water.",
+            juice: "The liquid obtained from or present in fruit or vegetables.",
+            beer: "An alcoholic drink made from yeast-fermented malt flavored with hops.",
+            wine: "An alcoholic drink made from fermented grape juice.",
+            cheese: "A food made from the pressed curds of milk, usually cows' milk.",
+            egg: "An oval or round object laid by a female bird, reptile, fish, or invertebrate, usually containing a developing embryo.",
+            yogurt: "A semi-solid sourish food prepared from milk fermented by added bacteria, often sweetened and flavored.",
+            car: "A road vehicle, typically with four wheels, powered by an internal combustion engine and able to carry a small number of people.",
+            bike: "A bicycle or motorcycle.",
+            boat: "A small vessel for traveling over water, propelled by oars, sails, or an engine.",
+            ship: "A large seagoing vessel.",
+            "plane": "A powered flying vehicle with fixed wings and a weight greater than that of the air it displaces, using the forward motion of air against its wings to generate lift.",
+            "train": "A series of connected railroad cars pulled or pushed by one or more locomotives.",
+            "truck": "A large, heavy motor vehicle used for transporting goods, materials, or a large number of people.",
+            "road": "A wide way leading from one place to another, especially one with a specially prepared surface that vehicles can use.",
+            "path": "A way or track laid down for walking or made by continual treading.",
+            "bridge": "A structure carrying a road, path, railroad, or canal across a river, ravine, road, railroad, or other obstacle.",
+            "door": "A hinged, sliding, or revolving barrier at the entrance to a building, room, vehicle, or enclosure.",
+            "window": "An opening in the wall or roof of a building or vehicle, typically fitted with glass in a frame to admit light or air and allow people to see out.",
+            "wall": "A continuous vertical brick or stone structure that encloses or divides an area of land.",
+            "floor": "The lower surface of a room, on which one may walk.",
+            "roof": "The structure forming the upper covering of a building or vehicle.",
+            "room": "A space that can be occupied or where something can be done, especially one separate from other parts in a building.",
+            "kitchen": "A room or area where food is prepared and cooked.",
+            "bed": "A piece of furniture for sleep or rest, typically a framework with a mattress and coverings.",
+            "chair": "A separate seat for one person, typically with a back and four legs.",
+            "table": "A piece of furniture with a flat top and one or more legs, providing a level surface for eating, writing, or working at.",
+            "spoon": "An implement consisting of a small shallow bowl, oval or round, at the end of a handle, used for stirring, serving, or eating food.",
+            "fork": "An implement with two or more prongs used for lifting food to the mouth or holding it when cutting.",
+            "knife": "An instrument composed of a blade fixed into a handle, used for cutting or as a weapon.",
+            "plate": "A flat, typically round dish, typically made of ceramic, used for serving food.",
+            "bowl": "A round, deep dish or basin used for serving food or holding liquid.",
+            "cup": "A small open container for drinking from, typically having a handle.",
+            "glass": "A hard, brittle substance, typically transparent or translucent, made by fusing sand with soda, lime, and sometimes other ingredients and cooling rapidly.",
+            "soap": "A substance used with water for washing and cleaning, made of a compound of natural oils or fats with sodium hydroxide or another strong alkali.",
+            "towel": "A piece of thick absorbent cloth or paper used for drying oneself or wiping things dry.",
+            "brush": "A tool with a handle and a block of bristles or other filaments, used for cleaning, grooming, or painting.",
+            "phone": "A telephone, especially a mobile one that is connected to a network and can make and receive calls.",
+            "radio": "The transmission and reception of electromagnetic waves of radio frequency, especially those carrying sound messages.",
+            "television": "A system for transmitting visual images and sound that are reproduced on screens, chiefly used to broadcast programs for entertainment, information, and education.",
+            "lamp": "A device for giving light, either one consisting of an electric bulb together with its holder and shade or cover or one burning gas or a liquid fuel and consisting of a wick or mantle and a glass shade.",
+            "fan": "A machine with rotating blades that creates a current of air for cooling or ventilating a room.",
+            "dress": "A one-piece garment for a woman or girl that covers the body and extends down over the legs.",
+            "shirt": "A garment for the upper body made of cotton or a similar fabric, with a collar and sleeves and with buttons down the front.",
+            "pants": "An outer garment covering the body from the waist to the ankles, with a separate part for each leg.",
+            "shoe": "A covering for the foot, typically made of leather, having a sturdy sole and not reaching above the ankle.",
+            "sock": "A garment for the foot and lower part of the leg, typically knitted from wool, cotton, or nylon.",
+            "hat": "A shaped covering for the head, typically with a crown and a brim.",
+            "coat": "An outer garment with sleeves, worn outdoors and typically extending below the hips.",
+            "scarf": "A length or square of fabric worn around the neck or head.",
+            "glove": "A covering for the hand, typically with separate sections for each finger and the thumb.",
+            "belt": "A strip of leather or other material worn around the waist to support clothes or as a decoration.",
+            "ring": "A small circular band, typically of precious metal and often set with one or more gemstones, worn on a finger as an ornament or a token of marriage, engagement, or authority.",
+            "watch": "A small timepiece worn typically on a strap on one's wrist.",
+            "chain": "A connected flexible series of metal links used for fastening or securing objects and pulling or supporting loads.",
+            "bag": "A flexible container with an opening at the top, used for carrying things.",
+            "purse": "A small bag used for carrying money and other small personal items.",
+        };
+
+        var idiotChange = true;
+
+        function toggleFunction() {
+            if (idiotChange) {
+                showDefinitions();
+            } else {
+                document.getElementById('definitions').innerHTML = '';
+            }
+            idiotChange = !idiotChange;
+        }
+
+        function showDefinitions() {
+            let currentSentence = document.getElementById('testText').textContent;
+            let words = currentSentence.split(' ');
+            let definitions = [];
+        
+            words.forEach(word => {
+                let ewWord = word.trim().toLowerCase();
+                let definition = PoopyBu[ewWord] || "Definition not found.";
+                definitions.push(`<strong>${ewWord}:</strong> ${definition}`);
+            });
+        
+            let definitionsDiv = document.getElementById('definitions');
+            definitionsDiv.innerHTML = definitions.join('<br>');
+        }
+        
+
+    
+        function init() {
+            document.getElementById('typedText').addEventListener('input', startTimer);
+            document.getElementById('typedText').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    submitText();
+                }
+            });
+            updateSentence();
+        }
+    
+        function startTimer() {
+            if (!startTime) {
+                startTime = new Date();
+            }
+        }
+    
+        function submitText() {
+            endTime = new Date();
+            let typedText = document.getElementById('typedText').value;
+            let originalText = document.getElementById('testText').textContent;
+            let result = calculateScore(typedText, originalText);
+            displayResult(result);
+        }
+    
+        function calculateScore(typed, original) {
+            let timtak = (endTime - startTime) / 1000;
+            let acc = calculateAccuracy(typed, original);
+            let werpermin = calculateWpm(typed, timtak);
+            return {time: timtak.toFixed(2), acc: acc.toFixed(2), werpermin: werpermin.toFixed(2)};
+        }
+    
+        function calculateAccuracy(typed, original) {
+            let typedWords = typed.split(' ');
+            let originalWords = original.split(' ');
+            let totalCharacters = 0;
+            let matchedCharacters = 0;
+        
+            for (let i = 0; i < originalWords.length; i++) {
+                let originalWord = originalWords[i];
+                let typedWord = typedWords[i] || '';
+        
+                totalCharacters += Math.max(originalWord.length, typedWord.length);
+        
+                for (let j = 0; j < originalWord.length; j++) {
+                    if (j < typedWord.length && originalWord[j] === typedWord[j]) {
+                        matchedCharacters++;
+                    }
+                }
+            }
+        
+            return (matchedCharacters / totalCharacters) * 100;
+        }
+        
+    
+        function calculateWpm(typed, timtak) {
+            let words = typed.split(' ').length;
+            return (words / timtak) * 60;
+        }
+    
+        function displayResult(result) {
+            let resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `Time: ${result.time} seconds<br>Accuracy: ${result.acc}%<br>Words Per Minute: ${result.werpermin}`;
+        }
+    
+        function resetTest() {
+            document.getElementById('typedText').value = '';
+            document.getElementById('result').innerHTML = '';
+            document.getElementById('definitions').innerHTML = '';
+            startTime = undefined;
+            endTime = undefined;
+            updateSentence();
+        }
+    
+        function generateRandomSentence() {
+            let shitOfWords = "";
+            x = Math.random() * 4 + 2
+            for (let i = 0; i < x; i++) {
+                shitOfWords += peepee[Math.floor(Math.random() * peepee.length)] + " ";
+            }
+            return shitOfWords.trim();
+        }
+    
+        function updateSentence() {
+            document.getElementById('testText').textContent = generateRandomSentence();
+        }
+    </script>
+</head>
+<body onload="init()">
+    <h2>Type the following text:</h2>
+    <p id="testText"></p>
+    <textarea id="typedText" rows="4" cols="50"></textarea><br>
+    <button onclick="submitText()">Submit</button>
+    <button onclick="resetTest()">Next Sentence</button>
+    <div id="result"></div>
+    <button id="toggleButton" onclick="toggleFunction()">Show Definitions</button>
+    <div id="definitions"></div>
+</body>
+</html>

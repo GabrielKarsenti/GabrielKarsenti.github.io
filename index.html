@@ -4,7 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            margin: 0;
+        }
+        
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        section {
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .portfolio-item {
+            margin-bottom: 20px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: #333;
+            color: #fff;
+        }
+        
+        @media (max-width: 600px) {
+            nav ul li {
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -12,25 +68,26 @@
         <nav>
             <ul>
                 <li><a href="../TutorFolder/Tutor.html">Tutor Page</a></li>
+                <li><a href="../Games/snake.html">Snake Game</a></li>
+                <li><a href="../Games/NTB.html">NTB Game</a></li>
+                <li><a href="../Games/type.html">Typer Tester</a></li>
             </ul>
         </nav>
     </header>
 
     <section id="about">
         <h2>About Me</h2>
-        <p>Describe yourself and your experience here.</p>
+        <p>Hello.</p>
     </section>
 
     <section id="portfolio">
         <h2>My Portfolio</h2>
-        <!-- Portfolio Item 1 -->
         <div class="portfolio-item">
             <img src="path_to_image" alt="Project Image">
             <h3>Project Title</h3>
             <p>Project Description</p>
             <a href="project_link">View Project</a>
         </div>
-        <!-- Add more portfolio items here -->
     </section>
 
     <section id="contact">
@@ -44,7 +101,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2023 Your Name</p>
+        <p>&copy; Bye bye</p>
     </footer>
 </body>
 </html>
