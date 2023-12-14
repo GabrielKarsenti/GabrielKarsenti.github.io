@@ -409,15 +409,14 @@ constructor(x, y) {
 }
 
 move() {
-    if ((keyIsDown(LEFT_ARROW) || mouseClicked(mouseX > 0 && mouseX < 290 && mouseY < 200))&& this.x > 0) {
-    this.x -= this.speed;
+    if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
+        this.x -= this.speed;
     }
-    if ((keyIsDown(RIGHT_ARROW)|| mouseClicked(mouseX > 290 && mouseX < 580 && mouseY < 200)) && this.x < WIDTH - PLAYER_SIZE) {
-    this.x += this.speed;
+    if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
+        this.x += this.speed;
     }
-
-
 }
+
 
 draw() {
     fill(255, 0, 0);
