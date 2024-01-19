@@ -109,9 +109,20 @@ footer {
     }
 }
 
+.team-description {
+    margin-bottom: -10px; /* Adjusts the space between list items */
+    text-indent: 20px; /* Indents the first line of each paragraph */
+    text-align: center; /* Centers the text inside the element */
+    margin-left: auto; /* These two margin properties center the block element itself */
+    margin-right: auto;
+    width: 50%; /* Adjust the width as needed */
+    /* Additional styling can be added here */
+}
+
+
 .team-member {
     display: flex;
-    align-items: center;
+    
     gap: 20px;
 }
 
@@ -123,9 +134,14 @@ footer {
     border: 3px solid #000;
 }
 
-.team-description {
-    flex-grow: 1;
+.vertical-list p {
+    margin-top: 0px;
+    margin-bottom: 20px; /* Adjusts the space between list items */
+    text-indent: 20px; /* Indents the first line of each paragraph */
+    /* Additional styling can be added here */
 }
+
+
 
 .dropbtn {
     background-color: #000000;
