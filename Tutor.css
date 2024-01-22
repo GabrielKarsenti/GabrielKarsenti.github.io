@@ -8,6 +8,7 @@ body {
     background-repeat: no-repeat;
     background-position: 0px -150px;
     font-size: 18px;
+    word-wrap: break-word;
 }
 
 header {
@@ -86,43 +87,17 @@ footer {
     font-size: 18px;
 }
 
-@media screen and (max-width: 600px) {
-    header, nav, section, footer {
-        text-align: center;
-        border-color: #000;
-        border-radius: 2px;
-    }
-
-    .logo {
-        position: static;
-        margin: 0 auto;
-        display: block;
-    }
-
-    .nav-list {
-        flex-direction: column;
-    }
-
-    .nav-item {
-        margin-bottom: 10px;
-        width: 100%;
-    }
-}
-
 .team-description {
-    margin-bottom: -10px; /* Adjusts the space between list items */
-    text-indent: 20px; /* Indents the first line of each paragraph */
-    text-align: center; /* Centers the text inside the element */
-    margin-left: auto; /* These two margin properties center the block element itself */
+    margin-bottom: -10px;
+    text-indent: 20px;
+    text-align: center;
+    margin-left: auto;
     margin-right: auto;
-    width: 50%; /* Adjust the width as needed */
-    /* Additional styling can be added here */
+    width: 50%;
 }
-
 
 .team-member {
     display: flex;
-    
     gap: 20px;
 }
 
@@ -136,12 +111,9 @@ footer {
 
 .vertical-list p {
     margin-top: 0px;
-    margin-bottom: 20px; /* Adjusts the space between list items */
-    text-indent: 20px; /* Indents the first line of each paragraph */
-    /* Additional styling can be added here */
+    margin-bottom: 20px;
+    text-indent: 20px;
 }
-
-
 
 .dropbtn {
     background-color: #000000;
@@ -191,4 +163,46 @@ footer {
 
 .dropdown:hover .dropbtn {
     background-color: rgba(128, 128, 128, 0.5);
+}
+
+/* Responsive styles for mobile devices */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+
+    .nav-list {
+        flex-direction: column;
+    }
+
+    .nav-item {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .nav-item a {
+        font-size: 18px;
+    }
+
+    .team-description, .vertical-list {
+        width: 90%;
+        margin: 0 auto;
+        padding: 10px;
+    }
+
+    .profileImage {
+        width: 120px;
+        height: 120px;
+    }
+
+    .dropbtn {
+        margin-right: 0;
+        font-size: 14px;
+        padding: 6px;
+    }
+
+    .dropdown-content {
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
